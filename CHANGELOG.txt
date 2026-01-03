@@ -16,4 +16,17 @@
     - Added "Custom Days" option to time filters.
     - Implemented bulk deletion in Transaction Log.
     - Removed legacy `N` column from schema.
-- **Deployment:** Updated Aylan server (100.99.70.10) with new logic.
+## 2026-01-02 (Update 2)
+- **UI/UX Expansion:**
+    - Moved "Download Source" into sidebar expander to save vertical space.
+    - Replaced Category multiselect with a **500px scrollable checkbox list** for rapid filtering.
+    - Added **"Select All" and "Clear"** buttons for categories (callback-based fix).
+    - Expanded metrics to **4 columns**; added **"Avg. Spent per Month"**.
+    - Increased metric font size to **36px** for high visibility.
+    - Added preset time filters: **14, 60, 90, 180, and 365 days**.
+- **Documentation & Infrastructure:**
+    - **Git Integration:** Initialized repository, configured SSH authentication, and pushed to GitHub.
+    - **README Fix:** Removed hardcoded local paths and standardized installation steps.
+    - **Help Dialog:** Expanded explanation of Web vs. Local modes and privacy philosophy.
+- **Notes:** Created `Git_Setup_Notes.md` for local reference.
+
