@@ -11,12 +11,13 @@ A self-hosted, local-first financial dashboard built with Python and Streamlit. 
 
 The project uses a Python virtual environment to manage dependencies.
 
-1.  **Navigate to the project directory:**
+1.  **Clone or Download the project:**
     ```bash
-    cd /home/elric/purchase-tracker
+    git clone https://github.com/elricclark1/SerPilasPurchaseTracker.git
+    cd SerPilasPurchaseTracker
     ```
 
-2.  **Create a virtual environment (if not already present):**
+2.  **Create a virtual environment:**
     ```bash
     python3 -m venv .venv
     ```
@@ -24,22 +25,20 @@ The project uses a Python virtual environment to manage dependencies.
 3.  **Activate the virtual environment:**
     ```bash
     source .venv/bin/activate
+    # On Windows: .venv\Scripts\activate
     ```
 
 4.  **Install dependencies:**
     ```bash
-    pip install streamlit pandas plotly
+    pip install -r requirements.txt
     ```
 
 ## How to Run
-
-There are two ways to start the application.
 
 ### Option 1: Activate Environment First (Recommended)
 This is standard practice for Python development.
 
 ```bash
-cd /home/elric/purchase-tracker
 source .venv/bin/activate
 streamlit run app.py
 ```
@@ -48,7 +47,6 @@ streamlit run app.py
 You can run the Streamlit executable directly from the virtual environment without activating it globally in your shell.
 
 ```bash
-cd /home/elric/purchase-tracker
 ./.venv/bin/streamlit run app.py
 ```
 
@@ -63,4 +61,4 @@ cd /home/elric/purchase-tracker
 ## Data Schema
 
 The app expects (and creates) a CSV with the following columns:
-`N`, `Date`, `Description`, `Amount`, `Necessity`, `Method`, `Category`, `Tag`, `More info`
+`Date`, `Description`, `Amount`, `Necessity`, `Method`, `Category`, `Tag`, `More info`
