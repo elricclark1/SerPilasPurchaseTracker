@@ -300,7 +300,31 @@ with st.sidebar:
         ["All Time", "This Month", "Last 14 Days", "Last 30 Days", "Last 60 Days", "Last 90 Days", "Last 180 Days", "Last 365 Days", "This Year"]
     )
     
-    selected_cats = st.multiselect("Categories", st.session_state.categories, default=st.session_state.categories)
+    st.markdown("### Categories")
+    
+    # Callback functions to update checkbox states directly
+    def select_all():
+        for cat in st.session_state.categories:
+            st.session_state[f"cat_check_{cat}"] = True
+
+    def clear_all():
+        for cat in st.session_state.categories:
+            st.session_state[f"cat_check_{cat}"] = False
+
+    c1, c2 = st.columns(2)
+    # Use on_click to handle state updates before re-render
+    c1.button("Select All", on_click=select_all, use_container_width=True)
+    c2.button("Clear", on_click=clear_all, use_container_width=True)
+
+    # Scrollable checkbox list
+    selected_cats = []
+    with st.container(height=500):
+        for cat in st.session_state.categories:
+            # key=... ensures persistence. 
+            # value=True initializes new categories as checked by default.
+            # If key exists in session_state (from callbacks or previous interaction), 'value' is ignored.
+            if st.checkbox(cat, key=f"cat_check_{cat}", value=True):
+                selected_cats.append(cat)
 
     # 3. SETTINGS (Local Only)
     if IS_LOCAL_MODE:
@@ -333,14 +357,50 @@ with st.sidebar:
 
 # HELP DIALOG
 if st.session_state.get('show_help', False):
-    @st.dialog("👋 Welcome to Purchase Tracker")
+    @st.dialog("📚 User Guide & Concepts")
     def help_dialog():
-        st.info("This is a **privacy-first**, **account-free** finance tracker.")
-        st.markdown("#### 🔒 Privacy")
-        st.write("No data is stored on our servers. In Web mode, data exists only in RAM.")
-        st.markdown("#### 💾 Data")
-        st.success("1. Log purchases.\n2. Export CSV before closing.\n3. Import CSV to resume.")
-        if st.button("Got it!", use_container_width=True):
+        st.markdown("""
+        ### 🌟 Core Philosophy
+        **Serpilas Purchase Tracker** is a privacy-first financial tool. Unlike most apps, **we do not store your data** in a database. You own your data completely.
+        """)
+        
+        st.divider()
+        
+        st.markdown("### ☁️ Web vs. 📍 Local Mode")
+        
+        c1, c2 = st.columns(2)
+        with c1:
+            st.info("**☁️ Web Mode** (Ephemeral)")
+            st.markdown("""
+            - **Default** for this website.
+            - Data lives **only in RAM**.
+            - **Closing the tab wipes data.**
+            - **Must** Export CSV to save.
+            - **Must** Import CSV to resume.
+            """)
+            
+        with c2:
+            st.success("**📍 Local Mode** (Persistent)")
+            st.markdown("""
+            - Runs on **your computer**.
+            - Data saves **automatically** to disk.
+            - Settings (colors, categories) are saved.
+            - **No** manual export needed.
+            """)
+            
+        st.markdown("*> To switch to Local Mode, download the source code from the sidebar and run it on your machine!*")
+        
+        st.divider()
+        
+        st.markdown("### 🚀 How to Use")
+        st.markdown("""
+        1.  **Log:** Enter details in the 'Log Transaction' form.
+        2.  **Filter:** Use the sidebar to slice data by **Time Period** (e.g., Last 30 Days) or **Category**.
+        3.  **Analyze:** Watch your 'Total Spend' and 'Avg/Month' metrics update instantly.
+        4.  **Manage:** Check the 'Data Management' section in the sidebar to **Backup (Export)** or **Restore (Import)** your history.
+        """)
+        
+        if st.button("Close", use_container_width=True):
             st.session_state.show_help = False
             st.rerun()
     help_dialog()
