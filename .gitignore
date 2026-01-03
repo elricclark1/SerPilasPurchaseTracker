@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Streamlit
+.streamlit/
+!/.streamlit/config.toml
+
+# Data (Privacy)
+*.csv
+settings.json
+
+# Logs & Temp
+*.log
+*.tmp
+*.png

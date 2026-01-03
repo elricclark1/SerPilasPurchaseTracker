@@ -1,0 +1,19 @@
+# Project Changelog
+
+## 2026-01-02
+- **Unified Codebase:** Merged `app.py` and `local_app.py` into a single `app.py`.
+- **Environment Logic:** Implemented `IS_LOCAL_MODE` to toggle between Web (ephemeral) and Local (persistent) modes.
+- **Persistence:** Local mode now saves data to CSV and settings (accent color, paths) to `settings.json`.
+- **UI Overhaul:**
+    - Adopted "HabitKit" aesthetic (Pitch Black background, high contrast cards).
+    - Moved Help button to top-right.
+    - Switched View selector to a Toggle switch.
+    - Increased Transaction Log height to 800px.
+- **Charts:**
+    - Pie Chart: Added percentage labels (`textinfo='percent+label'`) and increased font size.
+    - Bar Chart: Added values inside bars (`textposition='inside'`).
+- **Features:**
+    - Added "Custom Days" option to time filters.
+    - Implemented bulk deletion in Transaction Log.
+    - Removed legacy `N` column from schema.
+- **Deployment:** Updated Aylan server (100.99.70.10) with new logic.
